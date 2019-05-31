@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(swigBlog)
+project(family)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -16,3 +16,8 @@ set_property(TARGET ${PROJECT_NAME} PROPERTY SWIG_INCLUDE_DIRECTORIES ${CMAKE_CU
 set_property(TARGET ${PROJECT_NAME} PROPERTY INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Python3::Python)
+
+if(APPLE)
+    # we change the suffix because swig generates a file expecting a .so on mac.
+    set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".so")
+endif()
